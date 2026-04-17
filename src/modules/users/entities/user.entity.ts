@@ -8,30 +8,33 @@ import {
 } from 'typeorm';
 import { UserRole } from '../../../common/enums/user-role.enum';
 import { Order } from '../../orders/entities/order.entity';
+import { Review } from '../../reviews/entities/review.entity';
 
 @Entity('users')
 export class User {
   @PrimaryGeneratedColumn()
-  id: number;
+  id!: number;
 
   @Column({ unique: true })
-  email: string;
+  email!: string;
 
   @Column()
-  passwordHash: string;
+  passwordHash!: string;
 
   @Column({ type: 'enum', enum: UserRole, default: UserRole.CUSTOMER })
-  role: UserRole;
+  role!: UserRole;
 
   @Column({ type: 'text', nullable: true })
-  hashedRefreshToken: string | null;
+  hashedRefreshToken!: string | null;
 
   @OneToMany(() => Order, (order) => order.user)
-  orders: Order[];
+  orders!: Order[];
+
+  @OneToMany(() => Review, (review) => review.user) reviews!: Review[];
 
   @CreateDateColumn()
-  createdAt: Date;
+  createdAt!: Date;
 
   @UpdateDateColumn()
-  updatedAt: Date;
+  updatedAt!: Date;
 }

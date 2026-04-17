@@ -9,6 +9,11 @@ import { ProductsModule } from './modules/products/products.module';
 import { OrdersModule } from './modules/orders/orders.module';
 import { RequestLoggerMiddleware } from './common/middleware/request-logger.middleware';
 
+import { CouponsModule } from './modules/coupons/coupons.module';
+import { ReviewsModule } from './modules/reviews/reviews.module';
+
+import { WishlistModule } from './modules/wishlist/wishlist.module';
+
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -35,6 +40,9 @@ import { RequestLoggerMiddleware } from './common/middleware/request-logger.midd
     CategoriesModule,
     ProductsModule,
     OrdersModule,
+    CouponsModule,
+    ReviewsModule,
+    WishlistModule,
   ],
 })
 export class AppModule implements NestModule {

@@ -9,39 +9,43 @@ import {
 } from 'typeorm';
 import { Category } from '../../categories/entities/category.entity';
 import { OrderItem } from '../../orders/entities/order-item.entity';
+import { Review } from '../../reviews/entities/review.entity';
 
 @Entity('products')
 export class Product {
   @PrimaryGeneratedColumn()
-  id: number;
+  id!: number;
 
   @Column()
-  name: string;
+  name!: string;
 
   @Column({ default: '' })
-  description: string;
+  description!: string;
 
   @Column({ type: 'decimal', precision: 10, scale: 2 })
-  price: string;
+  price!: string;
 
   @Column({ type: 'int', default: 0 })
-  stock: number;
+  stock!: number;
 
   @ManyToOne(() => Category, (category) => category.products, {
     nullable: false,
     onDelete: 'RESTRICT',
   })
-  category: Category;
+  category!: Category;
 
   @Column()
-  categoryId: number;
+  categoryId!: number;
 
   @OneToMany(() => OrderItem, (orderItem) => orderItem.product)
-  orderItems: OrderItem[];
+  orderItems!: OrderItem[];
+
+  @OneToMany(() => Review, (review) => review.product)
+  reviews!: Review[];
 
   @CreateDateColumn()
-  createdAt: Date;
+  createdAt!: Date;
 
   @UpdateDateColumn()
-  updatedAt: Date;
+  updatedAt!: Date;
 }
